@@ -6,6 +6,11 @@
     "bower_components",
     "output"
   ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/purescript/purescript-generics-rep.git"
+  },
   "dependencies": {
     "purescript-prelude": "^1.0.0",
     "purescript-monoid": "^1.0.0"
