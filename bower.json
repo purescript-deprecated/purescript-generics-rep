@@ -13,7 +13,9 @@
   },
   "dependencies": {
     "purescript-prelude": "^1.0.0",
-    "purescript-monoid": "^1.0.0"
+    "purescript-monoid": "^1.0.0",
+    "purescript-symbols": "^1.0.0",
+    "purescript-foldable-traversable": "^1.0.0"
   },
   "devDependencies": {
     "purescript-psci-support": "^1.0.0"
