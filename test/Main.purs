@@ -22,17 +22,13 @@ instance eqList :: Eq a => Eq (List a) where
 instance ordList :: Ord a => Ord (List a) where
   compare x y = GOrd.genericCompare x y
 
-instance showList
-    :: ( IsSymbol "Nil" -- these should be solved for us by the compiler
-       , IsSymbol "Cons"
-       , IsSymbol "head"
-       , IsSymbol "tail"
-       , Show a
-       ) => Show (List a) where
+instance showList :: Show a => Show (List a) where
   show x = GShow.genericShow x
 
 main :: Eff (console :: CONSOLE) Unit
 main = do
+  logShow (cons 1 (cons 2 Nil))
+
   logShow (cons 1 (cons 2 Nil) == cons 1 (cons 2 Nil))
   logShow (cons 1 (cons 2 Nil) == cons 1 Nil)
 
