@@ -7,7 +7,6 @@ import Data.Generic.Rep as G
 import Data.Generic.Rep.Eq as GEq
 import Data.Generic.Rep.Ord as GOrd
 import Data.Generic.Rep.Show as GShow
-import Data.Symbol (class IsSymbol)
 
 data List a = Nil | Cons { head :: a, tail :: List a }
 
