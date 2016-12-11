@@ -13,6 +13,11 @@
   },
   "dependencies": {
     "purescript-prelude": "^2.0.0",
-    "purescript-monoid": "^2.0.0"
+    "purescript-monoid": "^2.0.0",
+    "purescript-symbols": "^2.0.0",
+    "purescript-foldable-traversable": "^2.0.0"
+  },
+  "devDependencies": {
+    "purescript-console": "^2.0.0"
   }
 }
