@@ -37,18 +37,6 @@ instance boundedSimpleBounded :: Bounded SimpleBounded where
   bottom = GBounded.genericBottom
   top = GBounded.genericTop
 
-data ComplexBounded = First SimpleBounded | Second | Third Int
-derive instance genericComplexBounded :: G.Generic ComplexBounded _
-instance eqComplexBounded :: Eq ComplexBounded where
-  eq x y = GEq.genericEq x y
-instance ordComplexBounded :: Ord ComplexBounded where
-  compare x y = GOrd.genericCompare x y
-instance showComplexBounded :: Show ComplexBounded where
-  show x = GShow.genericShow x
-instance boundedComplexBounded :: Bounded ComplexBounded where
-  bottom = GBounded.genericBottom
-  top = GBounded.genericTop
-
 main :: Eff (console :: CONSOLE) Unit
 main = do
   logShow (cons 1 (cons 2 Nil))
@@ -61,6 +49,3 @@ main = do
 
   logShow (bottom :: SimpleBounded)
   logShow (top :: SimpleBounded)
-
-  logShow (bottom :: ComplexBounded)
-  logShow (top :: ComplexBounded)
