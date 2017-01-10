@@ -12,6 +12,7 @@ import Data.Generic.Rep
 
 class GenericBottom a where
   genericBottom' :: a
+
 instance genericBottomNoArguments :: GenericBottom NoArguments where
   genericBottom' = NoArguments
 
@@ -20,9 +21,6 @@ instance genericBottomSum :: GenericBottom a => GenericBottom (Sum a b) where
 
 instance genericBottomConstructor :: GenericBottom a => GenericBottom (Constructor name a) where
   genericBottom' = Constructor genericBottom'
-
-instance genericBottomProduct :: (GenericBottom a, GenericBottom b) => GenericBottom (Product a b) where
-  genericBottom' = Product genericBottom' genericBottom'
 
 instance genericBottomArgument :: Bounded a => GenericBottom (Argument a) where
   genericBottom' = Argument bottom
@@ -44,9 +42,6 @@ instance genericTopSum :: GenericTop b => GenericTop (Sum a b) where
 
 instance genericTopConstructor :: GenericTop a => GenericTop (Constructor name a) where
   genericTop' = Constructor genericTop'
-
-instance genericTopProduct :: (GenericTop a, GenericTop b) => GenericTop (Product a b) where
-  genericTop' = Product genericTop' genericTop'
 
 instance genericTopArgument :: Bounded a => GenericTop (Argument a) where
   genericTop' = Argument top

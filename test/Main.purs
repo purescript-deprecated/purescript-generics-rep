@@ -37,7 +37,7 @@ instance boundedSimpleBounded :: Bounded SimpleBounded where
   bottom = GBounded.genericBottom
   top = GBounded.genericTop
 
-data ComplexBounded = First Int SimpleBounded | Second | Third SimpleBounded Int
+data ComplexBounded = First SimpleBounded | Second | Third Int
 derive instance genericComplexBounded :: G.Generic ComplexBounded _
 instance eqComplexBounded :: Eq ComplexBounded where
   eq x y = GEq.genericEq x y
