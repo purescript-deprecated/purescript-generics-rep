@@ -1,18 +1,21 @@
 module Test.Main where
 
 import Prelude
-import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.Console (CONSOLE, logShow)
 import Data.Generic.Rep as G
+import Data.Generic.Rep.Bounded as GBounded
+import Data.Generic.Rep.Deep as GDeep
 import Data.Generic.Rep.Eq as GEq
 import Data.Generic.Rep.Ord as GOrd
 import Data.Generic.Rep.Show as GShow
-import Data.Generic.Rep.Bounded as GBounded
+import Control.Monad.Eff (Eff)
+import Control.Monad.Eff.Console (CONSOLE, logShow)
+import Test.Assert (ASSERT, assert)
+import Type.Proxy (Proxy(..))
 
-data List a = Nil | Cons { head :: a, tail :: List a }
+data List a = Nil | Cons a (List a)
 
 cons :: forall a. a -> List a -> List a
-cons head tail = Cons { head, tail }
+cons = Cons
 
 derive instance genericList :: G.Generic (List a) _
 
@@ -24,6 +27,11 @@ instance ordList :: Ord a => Ord (List a) where
 
 instance showList :: Show a => Show (List a) where
   show x = GShow.genericShow x
+
+instance deepList :: GDeep.Deep a => GDeep.Deep (List a) where
+  fromSpine x = GDeep.genericFromSpine x
+  toSpine x = GDeep.genericToSpine x
+  toSignature x = GDeep.genericToSignature x
 
 data SimpleBounded = A | B | C | D
 derive instance genericSimpleBounded :: G.Generic SimpleBounded _
@@ -37,7 +45,7 @@ instance boundedSimpleBounded :: Bounded SimpleBounded where
   bottom = GBounded.genericBottom
   top = GBounded.genericTop
 
-main :: Eff (console :: CONSOLE) Unit
+main :: Eff (console :: CONSOLE, assert :: ASSERT) Unit
 main = do
   logShow (cons 1 (cons 2 Nil))
 
@@ -49,3 +57,9 @@ main = do
 
   logShow (bottom :: SimpleBounded)
   logShow (top :: SimpleBounded)
+
+  assert
+    (GDeep.isValidSpine
+      (GDeep.toSignature
+        (Proxy :: Proxy (List Int)))
+        (GDeep.toSpine (cons 1 (cons 2 Nil))))
