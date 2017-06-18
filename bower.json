@@ -18,6 +18,7 @@
     "purescript-foldable-traversable": "^3.0.0"
   },
   "devDependencies": {
-    "purescript-console": "^3.0.0"
+    "purescript-console": "^3.0.0",
+    "purescript-psci-support": "^3.0.0"
   }
 }
