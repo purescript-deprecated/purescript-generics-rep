@@ -49,3 +49,5 @@ main = do
 
   logShow (bottom :: SimpleBounded)
   logShow (top :: SimpleBounded)
+
+  logShow (G.from $ cons 1 Nil)
