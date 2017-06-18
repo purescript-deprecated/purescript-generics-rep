@@ -68,7 +68,7 @@ instance showProduct :: (Show a, Show b) => Show (Product a b) where
   show (Product a b) = "(Product " <> show a <> " " <> show b <> ")"
 
 instance showConstructor :: (IsSymbol name, Show a) => Show (Constructor name a) where
-  show (Constructor a) = "(Constructor \"" <> reflectSymbol (SProxy :: SProxy name) <> "\" " <> show a <> ")"
+  show (Constructor a) = "(Constructor " <> show (reflectSymbol (SProxy :: SProxy name)) <> " " <> show a <> ")"
 
 instance showArgument :: Show a => Show (Argument a) where
   show (Argument a) = "(Argument " <> show a <> ")"
@@ -77,4 +77,4 @@ instance showRec :: Show a => Show (Rec a) where
   show (Rec a) = "(Rec " <> show a <> ")"
 
 instance showField :: (IsSymbol name, Show a) => Show (Field name a) where
-  show (Field a) = "(Field \"" <> reflectSymbol (SProxy :: SProxy name) <> "\" " <> show a <> ")"
+  show (Field a) = "(Field " <> show (reflectSymbol (SProxy :: SProxy name)) <> " " <> show a <> ")"
