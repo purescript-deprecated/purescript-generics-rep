@@ -12,10 +12,11 @@
     "url": "git://github.com/purescript/purescript-generics-rep.git"
   },
   "dependencies": {
-    "purescript-prelude": "^3.0.0",
+    "purescript-enums": "^3.2.1",
+    "purescript-foldable-traversable": "^3.0.0",
     "purescript-monoid": "^3.0.0",
-    "purescript-symbols": "^3.0.0",
-    "purescript-foldable-traversable": "^3.0.0"
+    "purescript-prelude": "^3.0.0",
+    "purescript-symbols": "^3.0.0"
   },
   "devDependencies": {
     "purescript-console": "^3.0.0"
