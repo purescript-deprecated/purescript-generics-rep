@@ -12,13 +12,27 @@ module Data.Generic.Rep
   , Field(..)
   ) where
 
+import Prelude
+
+--import Data.Eq (Eq(..))
 import Data.Maybe (Maybe(..))
+--import Data.Show (Show(..))
 
 -- | A representation for types with no constructors.
 data NoConstructors
 
+derive instance eqNoConstructors :: Eq NoConstructors
+
+instance showNoConstructors :: Show NoConstructors where
+  show = const "{}"
+
 -- | A representation for constructors with no arguments.
 data NoArguments = NoArguments
+
+derive instance eqNoArguments :: Eq NoArguments
+
+instance showNoArguments :: Show NoArguments where
+  show = const "{}"
 
 -- | A representation for types with multiple constructors.
 data Sum a b = Inl a | Inr b
