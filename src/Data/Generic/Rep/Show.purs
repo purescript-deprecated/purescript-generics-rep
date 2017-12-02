@@ -8,7 +8,7 @@ module Data.Generic.Rep.Show
   , genericShowFields
   ) where
 
-import Prelude (class Show, show, (<>), const)
+import Prelude (class Show, show, (<>))
 import Data.Foldable (intercalate)
 import Data.Generic.Rep
 import Data.Symbol (class IsSymbol, SProxy(..), reflectSymbol)
