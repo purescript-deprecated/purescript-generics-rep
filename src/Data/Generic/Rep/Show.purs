@@ -8,7 +8,7 @@ module Data.Generic.Rep.Show
   , genericShowFields
   ) where
 
-import Prelude (class Show, show, (<>))
+import Prelude (class Show, show, (<>), const)
 import Data.Foldable (intercalate)
 import Data.Generic.Rep
 import Data.Symbol (class IsSymbol, SProxy(..), reflectSymbol)
@@ -64,6 +64,12 @@ instance genericShowFieldsField
     => GenericShowFields (Field name a) where
   genericShowFields (Field a) =
     [reflectSymbol (SProxy :: SProxy name) <> ": " <> show a]
+
+instance genericShowFieldsNoArguments :: GenericShowFields NoArguments where
+  genericShowFields _ = ["{}"]
+
+instance genericShowFieldsNoConstructors :: GenericShowFields NoConstructors where
+  genericShowFields _ = ["{}"]
 
 -- | A `Generic` implementation of the `show` member from the `Show` type class.
 genericShow :: forall a rep. Generic a rep => GenericShow rep => a -> String

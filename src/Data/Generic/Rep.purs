@@ -14,9 +14,7 @@ module Data.Generic.Rep
 
 import Prelude
 
---import Data.Eq (Eq(..))
 import Data.Maybe (Maybe(..))
---import Data.Show (Show(..))
 
 -- | A representation for types with no constructors.
 data NoConstructors
