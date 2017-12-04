@@ -66,10 +66,7 @@ instance genericShowFieldsField
     [reflectSymbol (SProxy :: SProxy name) <> ": " <> show a]
 
 instance genericShowFieldsNoArguments :: GenericShowFields NoArguments where
-  genericShowFields _ = ["{}"]
-
-instance genericShowFieldsNoConstructors :: GenericShowFields NoConstructors where
-  genericShowFields _ = ["{}"]
+  genericShowFields _ = []
 
 -- | A `Generic` implementation of the `show` member from the `Show` type class.
 genericShow :: forall a rep. Generic a rep => GenericShow rep => a -> String
