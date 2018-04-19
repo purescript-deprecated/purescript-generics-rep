@@ -14,7 +14,6 @@
   "dependencies": {
     "purescript-enums": "#compiler/0.12",
     "purescript-foldable-traversable": "#compiler/0.12",
-    "purescript-monoid": "#compiler/0.12",
     "purescript-prelude": "#compiler/0.12",
     "purescript-symbols": "#compiler/0.12"
   },
