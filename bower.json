@@ -1,23 +1,30 @@
 {
   "name": "purescript-generics-rep",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "output"
-  ],
-  "license": "MIT",
+  "homepage": "https://github.com/purescript/purescript-generics-rep",
+  "license": "BSD-3-Clause",
   "repository": {
     "type": "git",
     "url": "git://github.com/purescript/purescript-generics-rep.git"
   },
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "node_modules",
+    "output",
+    "test",
+    "bower.json",
+    "gulpfile.js",
+    "package.json"
+  ],
   "dependencies": {
-    "purescript-enums": "#compiler/0.12",
-    "purescript-foldable-traversable": "#compiler/0.12",
-    "purescript-prelude": "#compiler/0.12"
+    "purescript-enums": "^4.0.0",
+    "purescript-foldable-traversable": "^4.0.0",
+    "purescript-maybe": "^4.0.0",
+    "purescript-newtype": "^3.0.0",
+    "purescript-prelude": "^4.0.0"
   },
   "devDependencies": {
-    "purescript-assert": "#compiler/0.12",
-    "purescript-console": "#compiler/0.12"
+    "purescript-assert": "^4.0.0",
+    "purescript-console": "^4.0.0"
   }
 }
