@@ -73,8 +73,13 @@ instance semigroupPerson :: Semigroup Person where
 
 Generic deriving can be very convenient for code generation, but it comes with a performance penalty. Consider defining a `Show` instance using `genericShow` - instead of simply converting our data type directly to a `String`, we first convert it to the representation type, and then convert that representation into a `String`. Creating this intermediate structure comes with a cost.
 
-Thankfully, the `generics-rep` approach means that we only need to perform a shallow copy of the data, up to the first data constructor or record, so in practice the performance cost is acceptable. In the case of `foreign-generic`, the benefits listed above usually outweight the performance cost, since we rarely need to parse or generate JSON in performance-critical sections of code in many applications.
+Thankfully, the `generics-rep` approach means that we only need to perform a shallow copy of the data, up to the first data constructor or record, so in practice the performance cost is acceptable. In the case of [foreign-generic](https://github.com/paf31/purescript-foreign-generic), the benefits listed above usually outweight the performance cost, since we rarely need to parse or generate JSON in performance-critical sections of code in many applications.
 
 ## API Documentation
 
 API documentation is [published on Pursuit](http://pursuit.purescript.org/packages/purescript-generics-rep).
+
+## Related libraries
+
+* Generic deriving of codecs for `Foreign` values: [purescript-foreign-generic](https://github.com/paf31/purescript-foreign-generic)
+* Generic deriving of codecs for purescript-argonaut: [purescript-argonaut-generic](https://github.com/purescript-contrib/purescript-argonaut-generic)
