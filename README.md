@@ -81,5 +81,6 @@ API documentation is [published on Pursuit](http://pursuit.purescript.org/packag
 
 ## Related libraries
 
+* The [documentation for the simple-json library](https://purescript-simple-json.readthedocs.io/en/latest/generics-rep.html) includes a tutorial for using this library.
 * Generic deriving of codecs for `Foreign` values: [purescript-foreign-generic](https://github.com/paf31/purescript-foreign-generic)
 * Generic deriving of codecs for purescript-argonaut: [purescript-argonaut-generic](https://github.com/purescript-contrib/purescript-argonaut-generic)
