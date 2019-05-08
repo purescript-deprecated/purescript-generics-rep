@@ -20,6 +20,7 @@
     "purescript-enums": "^4.0.0",
     "purescript-foldable-traversable": "^4.0.0",
     "purescript-maybe": "^4.0.0",
+    "purescript-either": "^4.0.0",
     "purescript-newtype": "^3.0.0",
     "purescript-prelude": "^4.0.0"
   },

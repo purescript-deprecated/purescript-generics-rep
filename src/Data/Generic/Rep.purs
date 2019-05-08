@@ -11,6 +11,7 @@ module Data.Generic.Rep
   ) where
 
 import Data.Maybe (Maybe(..))
+import Data.Either (Either(..))
 
 -- | A representation for types with no constructors.
 data NoConstructors
@@ -46,3 +47,11 @@ instance genericMaybe
   from Nothing = Inl (Constructor NoArguments)
   from (Just a) = Inr (Constructor (Argument a))
 
+instance genericEither
+  :: Generic (Either a b) (Sum (Constructor "Left" (Argument a))
+                               (Constructor "Right" (Argument b))) where
+  to (Inl (Constructor (Argument a))) = Left a
+  to (Inr (Constructor (Argument b))) = Right b
+
+  from (Left a) = Inl (Constructor (Argument a))
+  from (Right b) = Inr (Constructor (Argument b))
