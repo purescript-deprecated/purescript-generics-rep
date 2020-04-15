@@ -3,15 +3,10 @@ module Test.Main where
 import Prelude
 
 import Data.Enum (class BoundedEnum, class Enum, Cardinality(..), cardinality, fromEnum, pred, succ, toEnum, enumFromTo)
-import Data.Generic.Rep as G
-import Data.Generic.Rep.Bounded as GBounded
-import Data.Generic.Rep.Enum as GEnum
-import Data.Generic.Rep.Eq as GEq
-import Data.Generic.Rep.HeytingAlgebra as GHeytingAlgebra
-import Data.Generic.Rep.Ord as GOrd
-import Data.Generic.Rep.Ring as GRing
-import Data.Generic.Rep.Semiring as GSemiring
-import Data.Generic.Rep.Show as GShow
+import Data.Generic.Rep (class Generic)
+import Data.Generic.Rep.Derive (UsingGeneric)
+import Data.Generic.Rep.Eq (genericEq)
+import Data.Generic.Rep.Show (genericShow)
 import Data.HeytingAlgebra (ff, tt)
 import Data.Maybe (Maybe(..))
 import Data.Tuple (Tuple(..))
@@ -24,117 +19,62 @@ data List a = Nil | Cons { head :: a, tail :: List a }
 cons :: forall a. a -> List a -> List a
 cons head tail = Cons { head, tail }
 
-derive instance genericList :: G.Generic (List a) _
+derive instance genericList :: Generic (List a) _
 
 instance eqList :: Eq a => Eq (List a) where
-  eq x y = GEq.genericEq x y
+  eq x y = genericEq x y
 
 instance showList :: Show a => Show (List a) where
-  show x = GShow.genericShow x
+  show x = genericShow x
 
 data SimpleBounded = A | B | C | D
-derive instance genericSimpleBounded :: G.Generic SimpleBounded _
-instance eqSimpleBounded :: Eq SimpleBounded where
-  eq x y = GEq.genericEq x y
-instance ordSimpleBounded :: Ord SimpleBounded where
-  compare x y = GOrd.genericCompare x y
-instance showSimpleBounded :: Show SimpleBounded where
-  show x = GShow.genericShow x
-instance boundedSimpleBounded :: Bounded SimpleBounded where
-  bottom = GBounded.genericBottom
-  top = GBounded.genericTop
-instance enumSimpleBounded :: Enum SimpleBounded where
-  pred = GEnum.genericPred
-  succ = GEnum.genericSucc
-instance boundedEnumSimpleBounded :: BoundedEnum SimpleBounded where
-  cardinality = GEnum.genericCardinality
-  toEnum = GEnum.genericToEnum
-  fromEnum = GEnum.genericFromEnum
+derive instance genericSimpleBounded :: Generic SimpleBounded _
+derive via (UsingGeneric SimpleBounded) instance eqSimpleBounded :: Eq SimpleBounded
+derive via (UsingGeneric SimpleBounded) instance ordSimpleBounded :: Ord SimpleBounded
+derive via (UsingGeneric SimpleBounded) instance showSimpleBounded :: Show SimpleBounded
+derive via (UsingGeneric SimpleBounded) instance boundedSimpleBounded :: Bounded SimpleBounded
+derive via (UsingGeneric SimpleBounded) instance enumSimpleBounded :: Enum SimpleBounded
+derive via (UsingGeneric SimpleBounded) instance boundedEnumSimpleBounded :: BoundedEnum SimpleBounded
 
 data Option a = None | Some a
-derive instance genericOption :: G.Generic (Option a) _
-instance eqOption :: Eq a => Eq (Option a) where
-  eq x y = GEq.genericEq x y
-instance ordOption :: Ord a => Ord (Option a) where
-  compare x y = GOrd.genericCompare x y
-instance showOption :: Show a => Show (Option a) where
-  show x = GShow.genericShow x
-instance boundedOption :: Bounded a => Bounded (Option a) where
-  bottom = GBounded.genericBottom
-  top = GBounded.genericTop
-instance enumOption :: (Bounded a, Enum a) => Enum (Option a) where
-  pred = GEnum.genericPred
-  succ = GEnum.genericSucc
-instance boundedEnumOption :: BoundedEnum a => BoundedEnum (Option a) where
-  cardinality = GEnum.genericCardinality
-  toEnum = GEnum.genericToEnum
-  fromEnum = GEnum.genericFromEnum
+derive instance genericOption :: Generic (Option a) _
+derive via (UsingGeneric (Option a)) instance eqOption :: Eq a => Eq (Option a)
+derive via (UsingGeneric (Option a)) instance ordOption :: Ord a => Ord (Option a)
+derive via (UsingGeneric (Option a)) instance showOption :: Show a => Show (Option a)
+derive via (UsingGeneric (Option a)) instance boundedOption :: Bounded a => Bounded (Option a)
+derive via (UsingGeneric (Option a)) instance enumOption :: (Bounded a, Enum a) => Enum (Option a)
+derive via (UsingGeneric (Option a)) instance boundedEnumOption :: BoundedEnum a => BoundedEnum (Option a)
 
 data Bit = Zero | One
-derive instance genericBit :: G.Generic Bit _
-instance eqBit :: Eq Bit where
-  eq x y = GEq.genericEq x y
-instance ordBit :: Ord Bit where
-  compare x y = GOrd.genericCompare x y
-instance showBit :: Show Bit where
-  show x = GShow.genericShow x
-instance boundedBit :: Bounded Bit where
-  bottom = GBounded.genericBottom
-  top = GBounded.genericTop
-instance enumBit :: Enum Bit where
-  pred = GEnum.genericPred
-  succ = GEnum.genericSucc
-instance boundedEnumBit :: BoundedEnum Bit where
-  cardinality = GEnum.genericCardinality
-  toEnum = GEnum.genericToEnum
-  fromEnum = GEnum.genericFromEnum
+derive instance genericBit :: Generic Bit _
+derive via (UsingGeneric Bit) instance eqBit :: Eq Bit
+derive via (UsingGeneric Bit) instance ordBit :: Ord Bit
+derive via (UsingGeneric Bit) instance showBit :: Show Bit
+derive via (UsingGeneric Bit) instance boundedBit :: Bounded Bit
+derive via (UsingGeneric Bit) instance enumBit :: Enum Bit
+derive via (UsingGeneric Bit) instance boundedEnumBit :: BoundedEnum Bit
 
 data Pair a b = Pair a b
-derive instance genericPair :: G.Generic (Pair a b) _
-instance eqPair :: (Eq a, Eq b) => Eq (Pair a b) where
-  eq = GEq.genericEq
-instance ordPair :: (Ord a, Ord b) => Ord (Pair a b) where
-  compare = GOrd.genericCompare
-instance showPair :: (Show a, Show b) => Show (Pair a b) where
-  show = GShow.genericShow
-instance boundedPair :: (Bounded a, Bounded b) => Bounded (Pair a b) where
-  bottom = GBounded.genericBottom
-  top = GBounded.genericTop
-instance enumPair :: (Bounded a, Enum a, Bounded b, Enum b) => Enum (Pair a b) where
-  pred = GEnum.genericPred
-  succ = GEnum.genericSucc
-instance boundedEnumPair :: (BoundedEnum a, BoundedEnum b) => BoundedEnum (Pair a b) where
-  cardinality = GEnum.genericCardinality
-  toEnum = GEnum.genericToEnum
-  fromEnum = GEnum.genericFromEnum
+derive instance genericPair :: Generic (Pair a b) _
+derive via (UsingGeneric (Pair a b)) instance eqPair :: (Eq a, Eq b) => Eq (Pair a b)
+derive via (UsingGeneric (Pair a b)) instance ordPair :: (Ord a, Ord b) => Ord (Pair a b)
+derive via (UsingGeneric (Pair a b)) instance showPair :: (Show a, Show b) => Show (Pair a b)
+derive via (UsingGeneric (Pair a b)) instance boundedPair :: (Bounded a, Bounded b) => Bounded (Pair a b)
+derive via (UsingGeneric (Pair a b)) instance enumPair :: (Bounded a, Enum a, Bounded b, Enum b) => Enum (Pair a b)
+derive via (UsingGeneric (Pair a b)) instance boundedEnumPair :: (BoundedEnum a, BoundedEnum b) => BoundedEnum (Pair a b)
 
 data A1 = A1 (Tuple (Tuple Int {a :: Int}) {a :: Int})
-derive instance genericA1 :: G.Generic A1 _
-instance eqA1 :: Eq A1 where
-  eq a = GEq.genericEq a
-instance showA1 :: Show A1 where
-  show a = GShow.genericShow a
-instance semiringA1 :: Semiring A1 where
-  zero = GSemiring.genericZero
-  one = GSemiring.genericOne
-  add x y = GSemiring.genericAdd x y
-  mul x y = GSemiring.genericMul x y
-instance ringA1 :: Ring A1 where
-  sub x y = GRing.genericSub x y
+derive instance genericA1 :: Generic A1 _
+derive via (UsingGeneric A1) instance eqA1 :: Eq A1
+derive via (UsingGeneric A1) instance showA1 :: Show A1
+derive via (UsingGeneric A1) instance semiringA1 :: Semiring A1
+derive via (UsingGeneric A1) instance ringA1 :: Ring A1
 
 data B1 = B1 (Tuple (Tuple Boolean {a :: Boolean}) {a :: Boolean})
-derive instance genericB1 :: G.Generic B1 _
-instance eqB1 :: Eq B1 where
-  eq a = GEq.genericEq a
-instance showB1 :: Show B1 where
-  show a = GShow.genericShow a
-instance heytingAlgebraB1 :: HeytingAlgebra B1 where
-  ff = GHeytingAlgebra.genericFF
-  tt = GHeytingAlgebra.genericTT
-  implies x y = GHeytingAlgebra.genericImplies x y
-  conj x y = GHeytingAlgebra.genericConj x y
-  disj x y = GHeytingAlgebra.genericDisj x y
-  not x = GHeytingAlgebra.genericNot x
+derive instance genericB1 :: Generic B1 _
+derive via (UsingGeneric B1) instance eqB1 :: Eq B1
+derive via (UsingGeneric B1) instance showB1 :: Show B1
+derive via (UsingGeneric B1) instance heytingAlgebraB1 :: HeytingAlgebra B1
 
 instance booleanAlgebraB1 :: BooleanAlgebra B1
 
@@ -164,16 +104,16 @@ main = do
   assert $ top == D
 
   log "Checking composite bottom"
-  assert $ bottom == None :: Option SimpleBounded
+  assert $ bottom == (None :: Option SimpleBounded)
 
   log "Checking composite top"
   assert $ top == Some D
 
   log "Checking product bottom"
-  assert $ bottom == Pair Zero A :: Pair Bit SimpleBounded
+  assert $ bottom == Pair Zero A
 
   log "Checking product top"
-  assert $ top == Pair One D :: Pair Bit SimpleBounded
+  assert $ top == Pair One D
 
   log "Checking simple pred bottom"
   assert $ pred (bottom :: SimpleBounded) == Nothing
@@ -245,7 +185,7 @@ main = do
   assert $ A1 (Tuple (Tuple 100 {a: 10}) {a: 20}) * A1 (Tuple (Tuple 50 {a: 30}) {a: 40}) == A1 (Tuple (Tuple 5000 {a: 300}) {a: 800})
 
   log "Checking sub"
-  assert $ A1 (Tuple (Tuple 100 {a: 10}) {a: 20}) - A1 (Tuple (Tuple 50 {a: 30}) {a: 40}) == A1 (Tuple (Tuple 50 {a: -20}) {a: -20})  
+  assert $ A1 (Tuple (Tuple 100 {a: 10}) {a: 20}) - A1 (Tuple (Tuple 50 {a: 30}) {a: 40}) == A1 (Tuple (Tuple 50 {a: -20}) {a: -20})
 
   log "Checking ff"
   assert $ (ff :: B1) == B1 (Tuple (Tuple false {a: false}) {a: false})
