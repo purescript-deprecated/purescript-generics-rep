@@ -17,14 +17,14 @@
     "package.json"
   ],
   "dependencies": {
-    "purescript-enums": "^4.0.0",
-    "purescript-foldable-traversable": "^4.0.0",
-    "purescript-maybe": "^4.0.0",
-    "purescript-newtype": "^3.0.0",
-    "purescript-prelude": "^4.0.0"
+    "purescript-enums": "master",
+    "purescript-foldable-traversable": "master",
+    "purescript-maybe": "master",
+    "purescript-newtype": "master",
+    "purescript-prelude": "master"
   },
   "devDependencies": {
-    "purescript-assert": "^4.0.0",
-    "purescript-console": "^4.0.0"
+    "purescript-assert": "master",
+    "purescript-console": "master"
   }
 }
