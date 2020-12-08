@@ -2,10 +2,9 @@
 
 [![Latest release](http://img.shields.io/github/release/purescript/purescript-generics-rep.svg)](https://github.com/purescript/purescript-generics-rep/releases)
 [![Build status](https://github.com/purescript/purescript-generics-rep/workflows/CI/badge.svg?branch=master)](https://github.com/purescript/purescript-generics-rep/actions?query=workflow%3ACI+branch%3Amaster)
+[![Pursuit](https://pursuit.purescript.org/packages/purescript-generics-rep/badge)](https://pursuit.purescript.org/packages/purescript-generics-rep)
 
 Generic programming using an approach inspired by GHC.Generics.
-
-This library requires version 0.10 of the PureScript compiler, or later.
 
 ## Installation
 
@@ -81,6 +80,6 @@ API documentation is [published on Pursuit](http://pursuit.purescript.org/packag
 
 ## Related libraries
 
-* The [documentation for the simple-json library](https://purescript-simple-json.readthedocs.io/en/latest/generics-rep.html) includes a tutorial for using this library.
-* Generic deriving of codecs for `Foreign` values: [purescript-foreign-generic](https://github.com/paf31/purescript-foreign-generic)
-* Generic deriving of codecs for purescript-argonaut: [purescript-argonaut-generic](https://github.com/purescript-contrib/purescript-argonaut-generic)
+- The [documentation for the simple-json library](https://purescript-simple-json.readthedocs.io/en/latest/generics-rep.html) includes a tutorial for using this library.
+- Generic deriving of codecs for `Foreign` values: [purescript-foreign-generic](https://github.com/paf31/purescript-foreign-generic)
+- Generic deriving of codecs for purescript-argonaut: [purescript-argonaut-generic](https://github.com/purescript-contrib/purescript-argonaut-generic)
