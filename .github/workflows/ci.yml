@@ -14,7 +14,7 @@ jobs:
 
       - uses: purescript-contrib/setup-purescript@main
         with:
-          purescript: "0.14.0-rc5"
+          purescript: "0.13.8"
 
       - uses: actions/setup-node@v1
         with:
@@ -22,14 +22,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install -g bower
-          npm install
-          bower install --production
+          npm install -g spago
 
       - name: Build source
-        run: npm run-script build
+        run: spago build
 
       - name: Run tests
-        run: |
-          bower install
-          npm run-script test --if-present
+        run: spago test
