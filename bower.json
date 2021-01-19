@@ -2,9 +2,10 @@
   "name": "purescript-generics-rep",
   "homepage": "https://github.com/purescript/purescript-generics-rep",
   "license": "BSD-3-Clause",
+  "keywords": ["pursuit-deprecated"],
   "repository": {
     "type": "git",
-    "url": "git://github.com/purescript/purescript-generics-rep.git"
+    "url": "https://github.com/purescript/purescript-generics-rep.git"
   },
   "ignore": [
     "**/.*",
