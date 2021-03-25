@@ -5,7 +5,7 @@
   "keywords": ["pursuit-deprecated"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/purescript/purescript-generics-rep.git"
+    "url": "https://github.com/purescript-deprecated/purescript-generics-rep.git"
   },
   "ignore": [
     "**/.*",
